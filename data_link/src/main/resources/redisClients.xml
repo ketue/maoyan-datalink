@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="redisClient" class="com.dianping.squirrel.client.impl.redis.spring.RedisClientBeanFactory">
+        <!-- 集群名称,必填 -->
+        <property name="clusterName" value="${clusterName}"></property>
+        <!--读写的超时时间,缓存业务建议改成100，存储业务建议改成1000，默认值为1000。选填-->
+        <property name="readTimeout" value="10000"></property>
+        <!--客户端连接池新建链接的超时时间，默认值为2000，不建议修改过小。选填-->
+        <property name="connTimeout" value="20000"></property>
+        <!--路由策略,默认值是master-only表示只从主节点读取。slave-only表示只读从节点,master-slave表示主从都可以读。选填-->
+        <property name="routerType" value="slave-only"></property>
+        <!--连接redis节点的连接池配置-->
+        <property name="poolMaxIdle" value="16"></property>
+        <property name="poolMaxTotal" value="32"></property>
+        <property name="poolWaitMillis" value="500"></property>
+        <property name="poolMinIdle" value="3"></property>
+    </bean>
+
+    <bean id="cinemaProfile" class="com.meituan.service.mobile.mtthrift.proxy.ThriftClientProxy" destroy-method="destroy">
+        <property name="serviceInterface" value="com.maoyan.service.movie.message.userprofiles.RPCUserprofilesService"/> <!-- 接口名 -->
+        <property name="appKey" value="com.sankuai.movie.bigdata.datalink"/>  <!-- 本地appkey -->
+        <property name="remoteAppkey" value="com.sankuai.movie.bigdata.userprofiles"/>  <!-- 目标Server Appkey  -->
+        <property name="remoteServerPort" value="9001" />
+        <property name="timeout" value="10000"/>
+    </bean>
+
+    <bean id="stormeyeRedisClient" class="com.dianping.squirrel.client.impl.redis.spring.RedisClientBeanFactory">
+        <!-- 集群名称,必填 -->
+        <property name="clusterName" value="${stormeyeSquirrelClusterName}"></property>
+        <!--读写的超时时间,缓存业务建议改成100，存储业务建议改成1000，默认值为1000。选填-->
+        <property name="readTimeout" value="10000"></property>
+        <!--客户端连接池新建链接的超时时间，默认值为2000，不建议修改过小。选填-->
+        <property name="connTimeout" value="20000"></property>
+        <!--路由策略,默认值是master-only表示只从主节点读取。slave-only表示只读从节点,master-slave表示主从都可以读。选填-->
+        <property name="routerType" value="slave-only"></property>
+        <!--连接redis节点的连接池配置-->
+        <property name="poolMaxIdle" value="16"></property>
+        <property name="poolMaxTotal" value="32"></property>
+        <property name="poolWaitMillis" value="500"></property>
+        <property name="poolMinIdle" value="3"></property>
+    </bean>
+
+    <bean id="rtdwRedisClient" class="com.dianping.squirrel.client.impl.redis.spring.RedisClientBeanFactory">
+        <!-- 集群名称,必填 -->
+        <property name="clusterName" value="${rtdwSquirrelClusterName}"></property>
+        <!--读写的超时时间,缓存业务建议改成100，存储业务建议改成1000，默认值为1000。选填-->
+        <property name="readTimeout" value="10000"></property>
+        <!--客户端连接池新建链接的超时时间，默认值为2000，不建议修改过小。选填-->
+        <property name="connTimeout" value="20000"></property>
+        <!--路由策略,默认值是master-only表示只从主节点读取。slave-only表示只读从节点,master-slave表示主从都可以读。选填-->
+        <property name="routerType" value="slave-only"></property>
+        <!--连接redis节点的连接池配置-->
+        <property name="poolMaxIdle" value="16"></property>
+        <property name="poolMaxTotal" value="32"></property>
+        <property name="poolWaitMillis" value="500"></property>
+        <property name="poolMinIdle" value="3"></property>
+    </bean>
+
+    <bean id="eagleTcpClientPublic" class="com.sankuai.meituan.eagle.tcpclient.EagleTcpClient">
+        <!--接入appkey，必填-->
+        <property name="appKey" value="com.sankuai.movie.bigdata.rtwh" />
+        <!-- accessKey可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="accessKey" value="4EFC8EBA086798611CC75E7AF9443C51" />
+        <!--要访问的集群组名，可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="clusterGroupName" value="${publicEsClusterName}" />
+    </bean>
+
+    <bean id="eagleRestClientPublic" class="com.sankuai.meituan.eagle.restclient.EagleRestClient">
+        <!-- 实际使用过程中, 业务方需要使用自己的appkey 和 accesskey -->
+        <!-- appkey可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="appKey" value="com.sankuai.movie.bigdata.rtwh" />
+        <!-- accessKey可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="accessKey" value="4EFC8EBA086798611CC75E7AF9443C51" />
+        <!--要访问的集群组名，可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="clusterGroupName" value="${publicEsClusterName}" />
+    </bean>
+
+    <bean id="eagleRestClientWH" class="com.sankuai.meituan.eagle.restclient.EagleRestClient">
+        <!-- 实际使用过程中, 业务方需要使用自己的appkey 和 accesskey -->
+        <!-- appkey可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="appKey" value="com.sankuai.movie.bigdata.rtwh" />
+        <!-- accessKey可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="accessKey" value="4EFC8EBA086798611CC75E7AF9443C51" />
+        <!--要访问的集群组名，可从管理平台菜单中查看：权限中心->Appkey列表，必填-->
+        <property name="clusterGroupName" value="${rtdwEsClusterName}" />
+    </bean>
+
+    <bean id="mtThriftPoolConfig" class="com.meituan.service.mobile.mtthrift.client.pool.MTThriftPoolConfig">
+        <property name="maxActive" value="400" />
+        <property name="maxIdle" value="20" />
+        <property name="minIdle" value="20" />
+        <property name="maxWait" value="3000" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="testWhileIdle" value="true" />
+    </bean>
+
+    <bean id="realTimeDWService" class="com.meituan.service.mobile.mtthrift.proxy.ThriftClientProxy" destroy-method="destroy">
+        <property name="mtThriftPoolConfig" ref="mtThriftPoolConfig" />
+        <property name="serviceInterface" value="com.maoyan.realtime.warehouse.thrift.RealTimeDWService" />
+        <property name="appKey" value="com.sankuai.movie.bigdata.datalink" />
+        <property name="remoteAppkey" value="com.sankuai.movie.bigdata.rtwh" />
+        <property name="remoteServerPort" value="9897" />
+        <property name="timeout" value="30000" />
+    </bean>
+
+    <bean id="rowPieceDataThriftService" class="com.meituan.service.mobile.mtthrift.proxy.ThriftClientProxy" destroy-method="destroy">
+        <property name="mtThriftPoolConfig" ref="mtThriftPoolConfig"/>
+        <property name="serviceInterface" value="com.meituan.service.movie.data.service.thrift.DataThriftService"/>
+        <property name="appKey" value="com.sankuai.movie.bigdata.datalink"/>
+        <property name="remoteAppkey" value="com.sankuai.movie.bigdata.rowpiece"/>
+        <property name="timeout" value="20000"/>
+    </bean>
+
+
+</beans>

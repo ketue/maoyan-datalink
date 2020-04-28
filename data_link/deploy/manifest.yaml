@@ -1,0 +1,20 @@
+version: v1
+build:
+    tools:
+        oracle-jdk: 8
+        maven: 3.3.3
+    run:
+        workDir: ./     #是代码库的相对目录
+        cmd:
+            - sh deploy/compile.sh
+    target:
+        distDir: ./target/		# 相对代码根目录的路径
+        files:
+            - ./*.jar
+            - ../deploy
+autodeploy:
+    targetDir: /opt/meituan/mobile/com.sankuai.movie.bigdata.datalink/	# 暂时autodeploy会以targetDir的最后一级目录作为service/的名字
+    run: sh deploy/run.sh
+    check: sh deploy/check.sh
+    checkRetry: 2                               # 缺省值为1，可加大增加check命令执行次数，拉长检查时间
+    CheckInterval: 1s                           # 两次 check 的时间间隔, 缺省值为1s，建议此数值不宜过大。

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autoconfig>
+    <template-resources>
+        <resource template="jmonitor.properties" target="conf/jmonitor.properties"/>
+        <resource template="log4j2.xml" target="log4j2.xml"/>
+        <resource template="application.properties" target="application.properties"/>
+    </template-resources>
+</autoconfig>

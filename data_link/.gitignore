@@ -1,0 +1,41 @@
+/src/main/resources/global_merged.properties
+/src/main/resources/application.properties
+src/main/resources/global_merged.properties
+src/main/resources/application.properties
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+/logs
+*.iml
+*.project
+*.settings
+*.classpath
+*.class
+.DS_Store
+# Mac
+.DS_Store
+# IDEA
+.idea
+*.iml
+
+# Eclipse
+target
+.classpath
+.project
+.settings
+buffet/logs/
+buffet/src/test/java/test/test2.java
+buffet/src/main/resources/jdbc.properties
+buffet/src/main/resources/spring-lts.xml
+buffet/src/main/resources/log4j.properties
+buffet/src/main/resources/spring-lts.xml
+buffet/src/main/resources/*
+buffet/src/main/resources/general.properties
+# Java
+*.class
+
+# Python
+*.pyc
+
+# Others
+*.log
+/classes
